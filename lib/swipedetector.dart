@@ -92,24 +92,15 @@ class SwipeDetector extends StatelessWidget {
         double velocity = endDetails.primaryVelocity;
 
         //Convert values to be positive
-        if (dx < 0) dx = -dx;
-        if (dy < 0) dy = -dy;
-        double positiveVelocity = velocity < 0 ? -velocity : velocity;
-
-        if (dx > swipeConfiguration.verticalSwipeMaxWidthThreshold) return;
-        if (dy < swipeConfiguration.verticalSwipeMinDisplacement) return;
-        if (positiveVelocity < swipeConfiguration.verticalSwipeMinVelocity)
-          return;
-
-        if (velocity < 0) {
-          //Swipe Up
-          if (onSwipeUp != null) {
-            onSwipeUp();
+        if (dx < 0) {
+          //Swipe Left
+          if (onSwipeLeft != null) {
+            onSwipeLeft();
           }
         } else {
-          //Swipe Down
-          if (onSwipeDown != null) {
-            onSwipeDown();
+          //Swipe Right
+          if (onSwipeRight != null) {
+            onSwipeRight();
           }
         }
       },
@@ -126,24 +117,13 @@ class SwipeDetector extends StatelessWidget {
             startHorizontalDragDetails.globalPosition.dy;
         double velocity = endDetails.primaryVelocity;
 
-        if (dx < 0) dx = -dx;
-        if (dy < 0) dy = -dy;
-        double positiveVelocity = velocity < 0 ? -velocity : velocity;
-
-        print("$dx $dy $velocity $positiveVelocity");
-
-        if (dx < swipeConfiguration.horizontalSwipeMinDisplacement) return;
-        if (dy > swipeConfiguration.horizontalSwipeMaxHeightThreshold) return;
-        if (positiveVelocity < swipeConfiguration.horizontalSwipeMinVelocity)
-          return;
-
-        if (velocity < 0) {
-          //Swipe Up
+        if (dx < 0) {
+          //Swipe Left
           if (onSwipeLeft != null) {
             onSwipeLeft();
           }
         } else {
-          //Swipe Down
+          //Swipe Right
           if (onSwipeRight != null) {
             onSwipeRight();
           }
@@ -152,3 +132,4 @@ class SwipeDetector extends StatelessWidget {
     );
   }
 }
+
